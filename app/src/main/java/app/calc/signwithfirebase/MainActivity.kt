@@ -29,9 +29,6 @@ class MainActivity : AppCompatActivity() {
         val goToRegistration = findViewById<TextView>(R.id.goToRegistration)
         val login = findViewById<Button>(R.id.btnLogin)
 
-        Toast.makeText(this, "Email: $sharedEmail, Password: $sharedPassword", Toast.LENGTH_SHORT).show()
-
-
         login.setOnClickListener {
             performLogin()
         }
