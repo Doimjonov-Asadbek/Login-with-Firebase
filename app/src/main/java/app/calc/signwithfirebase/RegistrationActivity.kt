@@ -84,7 +84,6 @@ class RegistrationActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(inputEmail, inputPassword)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-
                     
                     val user = auth.currentUser
                     if (user != null) {
