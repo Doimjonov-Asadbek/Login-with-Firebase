@@ -103,18 +103,4 @@ class RegistrationActivity : AppCompatActivity() {
         val inputPassword = password.text.toString()
         val uid = auth.currentUser?.uid
 
-        val db = FirebaseFirestore.getInstance()
-        val users = hashMapOf(
-            "email" to inputEmail,
-            "password" to inputPassword
-        )
-        db.collection("users").document(uid.toString())
-            .set(users)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show()
-            }
-    }
-}
+   
