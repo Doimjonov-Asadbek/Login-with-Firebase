@@ -85,6 +85,9 @@ class RegistrationActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
 
+
+
+
                     
                     val user = auth.currentUser
                     if (user != null) {
