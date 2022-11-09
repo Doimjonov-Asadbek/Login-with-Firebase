@@ -95,6 +95,9 @@ class RegistrationActivity : AppCompatActivity() {
             }
     }
 
+
+    
+
     fun saveFireStore() {
 
         val email = findViewById<EditText>(R.id.edtEmail)
