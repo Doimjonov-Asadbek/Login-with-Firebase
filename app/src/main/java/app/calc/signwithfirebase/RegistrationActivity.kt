@@ -87,7 +87,6 @@ class RegistrationActivity : AppCompatActivity() {
 
 
 
-
                     
                     val user = auth.currentUser
                     if (user != null) {
