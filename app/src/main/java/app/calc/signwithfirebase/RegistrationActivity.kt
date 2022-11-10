@@ -180,13 +180,3 @@ class RegistrationActivity : AppCompatActivity() {
 
 
 
-
-
-
-
-
-
-
-
-
-
