@@ -343,4 +343,3 @@ class RegistrationActivity : AppCompatActivity() {
 
 
 
-
