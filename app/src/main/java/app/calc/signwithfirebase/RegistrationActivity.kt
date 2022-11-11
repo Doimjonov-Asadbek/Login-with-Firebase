@@ -118,11 +118,3 @@ class RegistrationActivity : AppCompatActivity() {
             }
     }
 }
-
-
-
-
-
-
-
-
