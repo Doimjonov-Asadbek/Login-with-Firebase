@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var store: FirebaseFirestore
     private lateinit var sharedPreference:SharedPreferences
     private var sharedEmail = ""
     private var sharedPassword = ""
@@ -44,9 +45,9 @@ class RegistrationActivity : AppCompatActivity() {
 
         btnRegistration.setOnClickListener {
 
-            performRegistration()
-
             saveFireStore()
+
+            performRegistration()
         }
 
     }
@@ -96,25 +97,28 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     fun saveFireStore() {
-
         val email = findViewById<EditText>(R.id.edtEmail)
         val password = findViewById<EditText>(R.id.edtPassword)
+        val uid = auth.currentUser?.uid
         val inputEmail = email.text.toString()
         val inputPassword = password.text.toString()
-        val uid = auth.currentUser?.uid
 
-        val db = FirebaseFirestore.getInstance()
-        val users = hashMapOf(
+        store = FirebaseFirestore.getInstance()
+        val user = hashMapOf(
             "email" to inputEmail,
-            "password" to inputPassword
+            "password" to inputPassword,
         )
-        db.collection("users").document(uid.toString())
-            .set(users)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show()
-            }
+        if (uid != null) {
+            store.collection("users").document(uid).set(user)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Registration success", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, SecretPage::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Registration failure", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }
