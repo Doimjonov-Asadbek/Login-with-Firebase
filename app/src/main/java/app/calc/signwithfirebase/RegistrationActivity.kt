@@ -248,4 +248,3 @@ class RegistrationActivity : AppCompatActivity() {
 
 
 
-
