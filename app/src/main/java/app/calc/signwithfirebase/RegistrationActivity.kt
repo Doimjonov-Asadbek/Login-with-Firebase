@@ -114,6 +114,7 @@ class RegistrationActivity : AppCompatActivity() {
                     Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show()
                 }
 
+
             
         }
     }
