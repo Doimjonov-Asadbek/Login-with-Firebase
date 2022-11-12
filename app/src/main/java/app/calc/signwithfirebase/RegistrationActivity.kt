@@ -18,7 +18,6 @@ import com.google.firebase.ktx.Firebase
 class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var store: FirebaseFirestore
     private lateinit var sharedPreference:SharedPreferences
     private var sharedEmail = ""
     private var sharedPassword = ""
@@ -44,9 +43,7 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         btnRegistration.setOnClickListener {
-
             saveFireStore()
-
             performRegistration()
         }
 
@@ -102,23 +99,21 @@ class RegistrationActivity : AppCompatActivity() {
         val uid = auth.currentUser?.uid
         val inputEmail = email.text.toString()
         val inputPassword = password.text.toString()
+        val db = FirebaseFirestore.getInstance()
 
-        store = FirebaseFirestore.getInstance()
         val user = hashMapOf(
             "email" to inputEmail,
-            "password" to inputPassword,
+            "password" to inputPassword
         )
         if (uid != null) {
-            store.collection("users").document(uid).set(user)
+            db.collection("users").document(uid).set(user)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Registration success", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, SecretPage::class.java)
-                    startActivity(intent)
-                    finish()
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
-                    Toast.makeText(this, "Registration failure", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show()
                 }
+            
         }
     }
 }
