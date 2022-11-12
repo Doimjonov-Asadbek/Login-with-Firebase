@@ -113,6 +113,7 @@ class RegistrationActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show()
                 }
+
             
         }
     }
